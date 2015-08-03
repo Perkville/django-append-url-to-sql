@@ -55,8 +55,12 @@ import sys
 from django.conf import settings
 from django.http import HttpRequest
 from django.db.backends import util
-from django.db.backends.base.base import BaseDatabaseWrapper
 
+try:
+    from django.db.backends import BaseDatabaseWrapper
+except ImportError:
+    # In Django 1.8, the import path for BaseDatabaseWrapper changed to the following
+    from django.db.backends.base.base import BaseDatabaseWrapper
 
 class CursorWrapper(util.CursorDebugWrapper):
     def execute(self, sql, *args):
