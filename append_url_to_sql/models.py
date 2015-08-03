@@ -54,7 +54,9 @@ import sys
 
 from django.conf import settings
 from django.http import HttpRequest
-from django.db.backends import util, BaseDatabaseWrapper
+from django.db.backends import util
+from django.db.backends.base.base import BaseDatabaseWrapper
+
 
 class CursorWrapper(util.CursorDebugWrapper):
     def execute(self, sql, *args):
